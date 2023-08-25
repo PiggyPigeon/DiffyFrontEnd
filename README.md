@@ -1,2 +1,2 @@
-# DiffyFrontEnd
-Front end for Diffy 
+# FartWorld: A dating app for heavy farters
+Flutter app for max appage
