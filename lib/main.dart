@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:provider/provider.dart';
+
+import 'package:diffy/services/http_service.dart';
+import 'package:diffy/models/user_model.dart';
+import 'package:diffy/login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(Provider<HttpService>(
+    create: (_) =>
+        HttpService('https://diffy-app-455de95e2ffc.herokuapp.com/api'),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -70,8 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _login() {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => LoginPage()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   @override
@@ -82,6 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    final HttpService httpService =
+        Provider.of<HttpService>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -92,42 +103,58 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You pushed my button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const Text(
-              'Oh baby'
-            ),
-            FloatingActionButton(
-              onPressed: _login,
-              tooltip: 'Login',
-              child: const Text('Login')
-            ),
-          ],
-        ),
+      body: FutureBuilder<UserModel>(
+        future: httpService.getUser(2),
+        builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
+          if (snapshot.hasData) {
+            UserModel? user = snapshot.data;
+
+            return Center(
+              // Center is a layout widget. It takes a single child and positions it
+              // in the middle of the parent.
+              child: Column(
+                // Column is also a layout widget. It takes a list of children and
+                // arranges them vertically. By default, it sizes itself to fit its
+                // children horizontally, and tries to be as tall as its parent.
+                //
+                // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+                // action in the IDE, or press "p" in the console), to see the
+                // wireframe for each widget.
+                children: <Widget>[
+                  ListTile(
+                    title: Text('Welcome, ${user!.name}!'),
+                    subtitle: Text(user.email),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      const Text(
+                        'You pushed my button this many times:',
+                      ),
+                      Text(
+                        '$_counter',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                      const Text('Oh baby'),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 10.0),
+                    child: ElevatedButton(
+                        onPressed: _login,
+                        child: const Text('Login'),
+                      ),
+                  )
+                ],
+              ),
+            );
+          } else if (snapshot.hasError) {
+            // User API HTTP Error
+            return Text(snapshot.error.toString());
+          }
+
+          return CircularProgressIndicator();
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
