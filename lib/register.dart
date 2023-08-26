@@ -59,13 +59,13 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: Column(
         children: [
-          Container(
-            height: 150,
-            width: 190,
-            padding: const EdgeInsets.only(top: 40),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(200)),
-            child: Center(child: Image.asset('asset/images/flutter.png')),
-          ),
+          // Container(
+          //   height: 150,
+          //   width: 190,
+          //   padding: const EdgeInsets.only(top: 40),
+          //   decoration: BoxDecoration(borderRadius: BorderRadius.circular(200)),
+          //   child: Center(child: Image.asset('asset/images/flutter.png')),
+          // ),
           Padding(
               padding: const EdgeInsets.all(10),
               child: TextField(
@@ -86,15 +86,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: 'Enter your secure password',
                 ),
               )),
-          TextButton(
-              onPressed: () {
-                //debugPrint("Hello");
-              },
-              // child: const Text(
-              //   'Forgot Password',
-              //   style: TextStyle(color: Colors.blue, fontSize: 15),
-              // )
-            ),
+          // TextButton(
+          //     onPressed: () {
+          //       //debugPrint("Hello");
+          //     },
+          //     // child: const Text(
+          //     //   'Forgot Password',
+          //     //   style: TextStyle(color: Colors.blue, fontSize: 15),
+          //     // )
+          //   ),
           Container(
             height: 50,
             width: 250,
@@ -108,15 +108,6 @@ class _RegisterPageState extends State<RegisterPage> {
           showInfoBadCredential
               ? const BadCredentials()
               : const GoodCredentials(),
-          // Expanded(
-          //   child: Align(
-          //     alignment: const FractionalOffset(0.5, 0.1),
-          //     child: TextButton(
-          //       onPressed: null, //goToRegistration,
-          //       child: const Text('New User? Create Account'),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

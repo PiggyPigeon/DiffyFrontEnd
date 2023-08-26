@@ -59,13 +59,13 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Column(
         children: [
-          Container(
-            height: 150,
-            width: 190,
-            padding: const EdgeInsets.only(top: 40),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(200)),
-            child: Center(child: Image.asset('asset/images/flutter.png')),
-          ),
+          // Container(
+          //   height: 150,
+          //   width: 190,
+          //   padding: const EdgeInsets.only(top: 40),
+          //   decoration: BoxDecoration(borderRadius: BorderRadius.circular(200)),
+          //   child: Center(child: Image.asset('asset/images/flutter.png')),
+          // ),
           Padding(
               padding: const EdgeInsets.all(10),
               child: TextField(
