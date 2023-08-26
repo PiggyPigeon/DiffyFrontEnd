@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:diffy/services/http_service.dart';
 import 'package:diffy/models/user_model.dart';
 import 'package:diffy/orig/login.dart';
+import 'package:diffy/register.dart';
 
 void main() {
   runApp(Provider<HttpService>(
@@ -82,6 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
         .push(MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
+  void _register() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => RegisterPage(),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -144,7 +151,17 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPressed: _login,
                         child: const Text('Login'),
                       ),
-                  )
+                  ),
+                  const SizedBox(height: 10), // Adding some spacing between the buttons
+                  Container(
+                    width: 200, // Adjust the width as per your requirement
+                    child: FloatingActionButton(
+                      heroTag: 'register',
+                      onPressed: _register,
+                      tooltip: 'Register',
+                      child: const Text('Register'),
+                    ),
+                  ),
                 ],
               ),
             );
