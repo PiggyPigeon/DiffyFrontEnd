@@ -117,28 +117,30 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-        const Text(
-        'You pushed my button this many times:',
-        ),
-        Text(
-          '$_counter',
-          style: Theme
-              .of(context)
-              .textTheme
-              .headlineMedium,
-        ),
-        const Text(
-            'Oh baby'
-        ),
-        FloatingActionButton(
-            onPressed: _login,
-            tooltip: 'Login',
-            child: const Text('Login')
-        ),
-        FloatingActionButton(
-          onPressed: _register,
-          tooltip: 'Register',
-          child: const Text('Register')
+            const Text(
+              'You pushed my button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
+            ),
+            const Text(
+                'Oh baby'
+            ),
+            FloatingActionButton(
+                onPressed: _login,
+                tooltip: 'Login',
+                child: const Text('Login')
+            ),
+            FloatingActionButton(
+                onPressed: _register,
+                tooltip: 'Register',
+                child: const Text('Register')
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

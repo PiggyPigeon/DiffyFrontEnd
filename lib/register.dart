@@ -90,10 +90,11 @@ class _RegisterPageState extends State<RegisterPage> {
               onPressed: () {
                 //debugPrint("Hello");
               },
-              child: const Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              )),
+              // child: const Text(
+              //   'Forgot Password',
+              //   style: TextStyle(color: Colors.blue, fontSize: 15),
+              // )
+            ),
           Container(
             height: 50,
             width: 250,
@@ -107,15 +108,15 @@ class _RegisterPageState extends State<RegisterPage> {
           showInfoBadCredential
               ? const BadCredentials()
               : const GoodCredentials(),
-          Expanded(
-            child: Align(
-              alignment: const FractionalOffset(0.5, 0.1),
-              child: TextButton(
-                onPressed: null, //goToRegistration,
-                child: const Text('New User? Create Account'),
-              ),
-            ),
-          ),
+          // Expanded(
+          //   child: Align(
+          //     alignment: const FractionalOffset(0.5, 0.1),
+          //     child: TextButton(
+          //       onPressed: null, //goToRegistration,
+          //       child: const Text('New User? Create Account'),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
