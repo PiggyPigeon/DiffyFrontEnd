@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -68,6 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _login() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => LoginPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -114,7 +120,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const Text(
               'Oh baby'
-            )
+            ),
+            FloatingActionButton(
+              onPressed: _login,
+              tooltip: 'Login',
+              child: const Text('Login')
+            ),
           ],
         ),
       ),
