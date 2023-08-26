@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'DIFFY',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'DIFFY'),
@@ -74,6 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context) => LoginPage()));
   }
 
+  void _register() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => RegisterPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -111,22 +117,28 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You pushed my button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const Text(
-              'Oh baby'
-            ),
-            FloatingActionButton(
-              onPressed: _login,
-              tooltip: 'Login',
-              child: const Text('Login')
-            ),
-          ],
+        const Text(
+        'You pushed my button this many times:',
+        ),
+        Text(
+          '$_counter',
+          style: Theme
+              .of(context)
+              .textTheme
+              .headlineMedium,
+        ),
+        const Text(
+            'Oh baby'
+        ),
+        FloatingActionButton(
+            onPressed: _login,
+            tooltip: 'Login',
+            child: const Text('Login')
+        ),
+        FloatingActionButton(
+          onPressed: _register,
+          tooltip: 'Register',
+          child: const Text('Register')
         ),
       ),
       floatingActionButton: FloatingActionButton(
