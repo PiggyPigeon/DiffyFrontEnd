@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   http.Client client = http.Client();
 
   final usernamecontroller = TextEditingController();
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Log in page"),
+        title: const Text("Register page"),
       ),
       body: Column(
         children: [
@@ -86,14 +86,15 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: 'Enter your secure password',
                 ),
               )),
-          TextButton(
-              onPressed: () {
-                //debugPrint("Hello");
-              },
-              child: const Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              )),
+          // TextButton(
+          //     onPressed: () {
+          //       //debugPrint("Hello");
+          //     },
+          //     // child: const Text(
+          //     //   'Forgot Password',
+          //     //   style: TextStyle(color: Colors.blue, fontSize: 15),
+          //     // )
+          //   ),
           Container(
             height: 50,
             width: 250,
@@ -101,21 +102,12 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.blue, borderRadius: BorderRadius.circular(20)),
             child: TextButton(
                 onPressed: null, //checkLoginAndPassword,
-                child: const Text('Login',
+                child: const Text('Register',
                     style: TextStyle(color: Colors.white, fontSize: 25))),
           ),
           showInfoBadCredential
               ? const BadCredentials()
               : const GoodCredentials(),
-          Expanded(
-            child: Align(
-              alignment: const FractionalOffset(0.5, 0.1),
-              child: TextButton(
-                onPressed: null, //goToRegistration,
-                child: const Text('New User? Create Account'),
-              ),
-            ),
-          ),
         ],
       ),
     );
